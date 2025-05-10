@@ -36,7 +36,7 @@ pipeline {
                 sh '''
                 docker tag waloid/toolbox:latest waloid/toolbox:$BRANCH_NAME-$BUILD_ID && \
                 docker push waloid/toolbox:latest && \
-                docker push waloid/toolbox:waloid/toolbox:$BRANCH_NAME-$BUILD_ID
+                docker push waloid/toolbox:$BRANCH_NAME-$BUILD_ID
                 '''
             }
         }
