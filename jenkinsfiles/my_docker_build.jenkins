@@ -26,7 +26,7 @@ pipeline {
             steps {
                 echo " ============== start building image =================="
                 dir ('docker/toolbox') {
-                	sh 'docker build -t waloid/toolbox:latest .'
+                	sh 'docker build -t waloid/toolbox:$BRANCH_NAME-latest .'
                 }
             }
         }
@@ -34,9 +34,9 @@ pipeline {
             steps {
                 echo " ============== start pushing image =================="
                 sh '''
-                docker tag waloid/toolbox:latest waloid/toolbox:$BRANCH_NAME-$BUILD_ID && \
+                docker tag waloid/toolbox:$BRANCH_NAME-latest waloid/toolbox:$BRANCH_NAME-$BUILD_ID && \
                 docker push waloid/toolbox:$BRANCH_NAME-$BUILD_ID && \
-                docker push waloid/toolbox:latest
+                docker push waloid/toolbox:$BRANCH_NAME-latest
                 '''
             }
         }
